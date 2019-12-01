@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Información de la especialidad</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Información de la especialidad</div>
+			<div class="card-body">
+				
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+  					<span th:text="${dangerDel}"></span>
+				</div>
+			
+			
+				<form>
+				  <div class="form-group row">
+				    <label for="descripcion" class="col-sm-2 col-form-label">Especialidad :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${especialidad.descripcion}" class="form-control-plaintext" >
+				    </div>
+				  </div>	
+				    
+				  </form>
+				  </div>
+				
+			
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/especialidad}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Especialidades</a>
+				
+				
+			</div>
+		</div>
+
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+

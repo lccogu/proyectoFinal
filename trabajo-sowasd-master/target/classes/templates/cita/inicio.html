@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Lista de doctor</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Lista de doctores</div>
+			<div class="card-body">
+				
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+  					<span th:text="${dangerDel}"></span>
+				</div>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Fecha</th>
+							<th scope="col">Hora</th>
+							<th scope="col">Doctor</th>
+							<th scope="col">Paciente</th>
+							<th scope="col">Tipo Atencion</th>
+						</tr>
+					</thead>
+					<tbody th:each="cita: ${citas}">
+						<tr>
+							<th scope="row" th:text="${cita.id}">#</th>
+							<td th:text="${cita.fecha}">Mark</td>
+							<td th:text="${cita.hora}">Mark</td>
+							<td th:text="${cita.doctor.nombre}">Mark</td>
+							<td th:text="${cita.paciente.nombre}">Mark</td>
+							<td th:text="${cita.tipoAtencion.descripcion}">Mark</td>
+				
+							<td>
+								<a th:href="@{ 'cita/info/' + ${cita.id} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>
+								<a  th:href="@{ 'cita/edit/' + ${cita.id} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>
+								<a  th:href="@{ 'cita/del/' + ${cita.id} }" class="btn btn-danger"> 
+									<i class="fas fa-trash-alt"></i> 
+								</a>							
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+
+			</div>
+			<div  class="card-footer text-muted">
+				<a th:href="@{cita/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nueva Cita</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+

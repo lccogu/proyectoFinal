@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Nuevo doctor</h1>
+
+		<div class="card">
+			<div class="card-header">Registro de nuevo doctor</div>
+			<div class="card-body">
+
+				<form th:action="@{/doctor/save}" th:object="${doctor}" 
+					method="post">
+					<div class="form-group">
+						<label for="nombre">Nombre:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Nombre de doctor"
+							th:field="*{nombre}">
+					</div>
+					<div class="form-group">
+						<label for="genero">Genero:</label> 
+						<input type="text" class="form-control" 
+							placeholder="genero del doctor"
+							th:field="*{genero}">
+					</div>
+					
+						<div class="form-group">
+						<label for="direccion">Dirección:</label> 
+						<input type="text" class="form-control"
+							placeholder="Dirección del doctor"
+							th:field ="*{direccion}">
+					</div>
+					
+					<div class="form-group">
+						<label for="telefono">Telefono:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Teléfono de doctor"
+							th:field="*{telefono}">
+					</div>
+					<div class="form-group">
+						<label for="horarioAtencion">HorarioAtencion:</label> 
+						<select th:field="*{horarioAtencion}" class="form-control">
+					      <option th:each="horarioAtencion : ${horarioAtenciones}"
+					      	th:value="${horarioAtencion.id}" th:text="${horarioAtencion.tipo}"></option>
+					    </select>
+					    </div>
+					    
+					    <div class="form-group">
+						<label for="clinica">Clinica:</label> 
+						<select th:field="*{clinica}" class="form-control">
+					      <option th:each="clinica : ${clinicas}"
+					      	th:value="${clinica.id}" th:text="${clinica.nombre}"></option>
+					    </select>
+					    </div>
+					    <div class="form-group">
+						<label for="especialidad">Especialidad:</label> 
+						<select th:field="*{especialidad}" class="form-control">
+					      <option th:each="especial : ${especialidades}"
+					      	th:value="${especial.id}" th:text="${especial.descripcion}"></option>
+					    </select>
+					    </div>
+				
+						
+					
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/doctor}" class="btn btn-danger"> 
+						<i class="fas fa-undo"></i> Cancelar 
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
